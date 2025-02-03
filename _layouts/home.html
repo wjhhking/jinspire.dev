@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<section class="blog">
+    {% for post in site.posts %}
+        {% if post.lang == page.lang %}
+            <article>
+                <h2>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h2>
+                <span class="date">
+                    {% if post.lang == 'zh' %}
+                        {{ post.date | date: "%Y年%m月%d日" }}
+                    {% else %}
+                        {{ post.date | date: "%B %d, %Y" }}
+                    {% endif %}
+                </span>
+            </article>
+        {% endif %}
+    {% endfor %}
+</section> 

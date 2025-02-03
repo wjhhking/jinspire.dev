@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>{{ site.title }}</h1>
+            <p>{% if page.lang == 'zh' %}{{ site.description_zh }}{% else %}{{ site.description }}{% endif %}</p>
+            <nav class="nav-container">
+                {% if page.layout == 'post' %}
+                    {% if page.lang == 'en' %}
+                        <a href="{{ '/en/' | relative_url }}" class="nav-link">←</a>
+                    {% else %}
+                        <a href="{{ '/' | relative_url }}" class="nav-link">←</a>
+                    {% endif %}
+                {% else %}
+                    {% if page.lang == 'en' %}
+                        <a href="{{ '/' | relative_url }}" class="nav-link">中文</a>
+                    {% else %}
+                        <a href="{{ '/en/' | relative_url }}" class="nav-link">English</a>
+                    {% endif %}
+                {% endif %}
+            </nav>
+        </header>
+
+        {{ content }}
+
+        <footer>
+            <p>© {{ site.time | date: '%Y' }} {{ site.title }} · <a href="mailto:{{ site.email }}">{% if page.lang == 'zh' %}邮箱{% else %}Email{% endif %}</a></p>
+        </footer>
+    </main>
+</body>
+</html> 
