@@ -253,9 +253,14 @@ footer a {
 }
 
 .content h1 {
-    font-size: 2.2rem;
-    margin: 2rem 0 1.5rem;
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.2rem;
+    color: #2c3e50;
     line-height: 1.4;
+}
+
+.content h1:first-of-type {
+    margin-top: 1rem;
 }
 
 .content h2 {
@@ -266,11 +271,10 @@ footer a {
 
 /* Better blockquote styling for both languages */
 .content blockquote {
-    margin: 2rem 0;
-    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
     background: #f8f9fa;
     border-left: 4px solid #2c3e50;
-    font-style: italic;
 }
 
 .content blockquote:lang(zh) {
@@ -314,7 +318,8 @@ footer a {
     }
     
     .content h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem;
     }
     
     .content h2 {
@@ -342,4 +347,30 @@ footer a {
     padding: 0.2em 0.4em;
     background: #f8f9fa;
     border-radius: 3px;
+}
+
+/* Remove extra whitespace at the bottom of posts */
+.content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Remove extra newlines at the end */
+.content {
+    margin-bottom: 2rem;
+}
+
+/* Better spacing for blockquotes */
+.content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: #f8f9fa;
+    border-left: 4px solid #2c3e50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content h1 {
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem;
+    }
 }

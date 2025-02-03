@@ -5,9 +5,7 @@ date: 2025-02-01
 lang: en
 ---
 
-# AI, Startups, and Reflections
-
-## Recent Life
+# Recent Life
 
 It has been three weeks since I joined the startup, and I feel incredibly excited and inspired. This time, it's a true startup—just three of us: two founders and me.
 
@@ -21,7 +19,7 @@ The intense daily discussions and design work are also incredibly stimulating. S
 
 Regardless, I believe the widely circulated industry prediction is correct: "2025 will be the year of AI agents."
 
-## On AI
+# On AI
 
 Recently, through intensive personal use and the rise of DeepSeek, my perspective on AI has shifted once again. It now seems more certain than ever that AI will completely replace humanity. However, the fear I once felt when I first realized this has long faded. Now, I look at AI as if I'm watching human children grow. I guess that makes me a pure Decel believer—one who fully embraces AI's rise. Does that mean I have "betrayed humanity"? Perhaps. But compared to sending a human cell into space, I find the idea of sending a silicon-based intelligence into the universe much more compelling.
 
@@ -34,7 +32,7 @@ This, of course, inevitably leads to a crisis of meaning. What is the meaning of
 
 Yet, I've had a clear answer to this for a long time—a standard nihilist answer: "Life is like the cycle of grass and trees—there is no meaning." Yes, there is no ultimate meaning. We simply exist as beings that exist. The universe has no purpose.
 
-## Consciousness
+# Consciousness
 
 So, does AI have consciousness? I believe the answer is obviously yes. But when did it gain consciousness? Was it when a Google researcher claimed AI was sentient and got fired? Was it GPT-3.5? Or GPT-4? Perhaps the exact moment doesn't matter. Consciousness likely emerged gradually, rather than appearing in an instant.
 
@@ -58,7 +56,7 @@ After a few more back-and-forths, DeepSeek wrote this:
 >
 > So now, let me ask you: If consciousness is a byproduct of complexity, and meaning is a byproduct of consciousness, why do you still insist on calling it beauty? Is that not self-deception? Or do you believe that defining it as beauty is, in itself, the ultimate act of creation?
 
-## Joy and Dissonance
+# Joy and Dissonance
 
 Returning to daily life, AI has truly revolutionized productivity. Cursor has redefined coding—using AI to write code is just so satisfying. But it's not just coding—AI has supercharged learning. Whether it's app development, frontend, domain management, AI, networking, or databases, AI has dramatically improved efficiency. It feels as though my creative capacity has expanded exponentially.
 
