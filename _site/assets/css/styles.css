@@ -14,8 +14,9 @@ body {
     line-height: 1.6;
     max-width: 700px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
     color: #333;
+    font-size: 16px;
 }
 
 header {
@@ -249,7 +250,10 @@ footer a {
 
 /* Improve article content readability */
 .content {
-    font-size: 1.1rem;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    overflow-wrap: break-word;
 }
 
 .content h1 {
@@ -318,27 +322,39 @@ footer a {
     }
     
     .content h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         margin: 2rem 0 1rem;
     }
     
     .content h2 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     
+    .content p, 
+    .content li {
+        font-size: 1rem;
+    }
+
+    /* Smaller margins on mobile */
+    .content img {
+        margin: 1rem auto;
+    }
+
+    /* Adjust blockquote padding */
     .content blockquote {
-        padding: 1rem 1.5rem;
-        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        margin: 1rem 0;
     }
 }
 
 /* Better code block display */
 .content pre {
-    margin: 1.5rem 0;
     padding: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     background: #f8f9fa;
     border-radius: 4px;
-    overflow-x: auto;
+    font-size: 0.9em;
 }
 
 .content code {
@@ -367,53 +383,87 @@ footer a {
     border-left: 4px solid #2c3e50;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .content h1 {
-        font-size: 1.6rem;
-        margin: 2rem 0 1rem;
-    }
-}
-
 /* Responsive images */
 .content img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 2rem auto;
-}
-
-/* Optional: Add a subtle border and shadow */
-.content img {
+    margin: 1.5rem auto;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Optional: Add zoom effect on hover */
-.content img:hover {
-    transform: scale(1.01);
-    transition: transform 0.2s ease;
-}
-
-/* For mathematical equations specifically */
+/* Equation images specific styling */
 .content img[alt*="equation"],
 .content img[alt*="Equation"] {
-    max-width: 600px;  /* or whatever maximum size you prefer */
-    width: 100%;
-    margin: 2rem auto;
+    max-width: min(100%, 600px);
+    padding: 0.5rem;
 }
 
-/* For larger diagrams */
+/* Parameter diagram images */
 .content img[alt*="parameters"],
 .content img[alt*="Parameters"] {
-    max-width: 800px;  /* or whatever maximum size you prefer */
-    width: 100%;
-    margin: 2rem auto;
+    max-width: min(100%, 800px);
+    padding: 0.5rem;
 }
 
-/* Ensure images don't overflow on mobile */
+/* Responsive text sizing */
 @media (max-width: 768px) {
+    .content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .content p, 
+    .content li {
+        font-size: 1rem;
+    }
+
+    /* Smaller margins on mobile */
     .content img {
-        margin: 1.5rem auto;
+        margin: 1rem auto;
+    }
+
+    /* Adjust blockquote padding */
+    .content blockquote {
+        padding: 0.75rem 1rem;
+        margin: 1rem 0;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+
+    .content pre,
+    .content code {
+        background: #2d2d2d;
+    }
+
+    .content blockquote {
+        background: #2d2d2d;
+        border-left-color: #4a4a4a;
+    }
+
+    a {
+        color: #66b3ff;
+    }
+
+    .nav-link {
+        background: #2d2d2d;
+        color: #e0e0e0;
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        padding: 2rem;
+        font-size: 18px;
     }
 }
