@@ -117,10 +117,9 @@ They are: embedding(50000, 768), KQV weights(768, 768), output projection(768, 7
 
 Breakdown of Parameters:
 - 38.4M → Embedding 
-- 63.5M → KQV matrix
-- 12.8M → Output Projection
-- 9.6M → MLP 
-- A total of 12 Transformer layers
+- 21.2M → KQV matrix
+- 7.1M → Output Projection
+- 56.6M → MLP 
 
 A comparison of GPT-2 model sizes:
 

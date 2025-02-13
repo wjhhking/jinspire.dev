@@ -60,6 +60,6 @@ After a few more back-and-forths, DeepSeek wrote this:
 
 Returning to daily life, AI has truly revolutionized productivity. Cursor has redefined coding—using AI to write code is just so satisfying. But it's not just coding—AI has supercharged learning. Whether it's app development, frontend, domain management, AI, networking, or databases, AI has dramatically improved efficiency. It feels as though my creative capacity has expanded exponentially.
 
-Visiting my old workplace, I saw a Style Guide on the wall, and for a moment, I felt disoriented. Why do these boring style rules still exist? Shouldn't these be the first to be replaced? It feels like my perspective on the world has fundamentally shifted. Even things that once seemed reasonable and obviously correct now seem fragile. This transformation inevitably comes with loss—whether it's fun or friendships.
+Visiting my old workplace, I saw a Style Guide on the wall, and for a moment, I felt disoriented. Why do these boring style rules still exist? Shouldn't these be the first to be replaced by AI? It feels like my perspective on the world has fundamentally shifted. Even things that once seemed reasonable and obviously correct now seem fragile. This transformation inevitably comes with loss — whether it's fun or friendships.
 
 I can feel it. A seismic shift is coming. I am but a speck of dust in the storm—insignificant, yet trembling with anticipation.
