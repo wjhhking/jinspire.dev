@@ -374,3 +374,46 @@ footer a {
         margin: 2rem 0 1rem;
     }
 }
+
+/* Responsive images */
+.content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+}
+
+/* Optional: Add a subtle border and shadow */
+.content img {
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Optional: Add zoom effect on hover */
+.content img:hover {
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
+}
+
+/* For mathematical equations specifically */
+.content img[alt*="equation"],
+.content img[alt*="Equation"] {
+    max-width: 600px;  /* or whatever maximum size you prefer */
+    width: 100%;
+    margin: 2rem auto;
+}
+
+/* For larger diagrams */
+.content img[alt*="parameters"],
+.content img[alt*="Parameters"] {
+    max-width: 800px;  /* or whatever maximum size you prefer */
+    width: 100%;
+    margin: 2rem auto;
+}
+
+/* Ensure images don't overflow on mobile */
+@media (max-width: 768px) {
+    .content img {
+        margin: 1.5rem auto;
+    }
+}
