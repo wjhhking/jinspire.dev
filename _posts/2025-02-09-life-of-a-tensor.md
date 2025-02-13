@@ -138,7 +138,13 @@ A comparison of GPT-2 model sizes:
 
 Note that the 5 is the sentence length, and the actual generation process pads to the max length, 1024.
 
-It's still quite magical! After writing it, I read it several times, pondering why this would work and still finding the process quite magical. 
+768 is the dimensionality of each token, also known as d_model.
+
+12 is the number of attention heads, also referred to as h.
+
+12 is also the number of Transformer layers, known as n_layers.
+
+This entire process is truly fascinating! Even after writing and reviewing it multiple times, I still find it incredible how this leads to intelligence. The way these transformations give rise to meaningful text remains a mystery!
 
 I'll write a comparison of famous models' (chatgpt, claude, llama, deepseek, qwen, etc) parameters composition soon! Wait, did I forget Gemini?
 

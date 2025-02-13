@@ -35,5 +35,20 @@
             <p>© {{ site.time | date: '%Y' }} {{ site.title }} · <a href="mailto:{{ site.email }}">{% if page.lang == 'zh' %}邮箱{% else %}Email{% endif %}</a></p>
         </footer>
     </main>
+
+    {% if jekyll.environment == "production" %}
+    <script>
+    fetch('/log', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        page: window.location.pathname,
+        referrer: document.referrer
+      })
+    });
+    </script>
+    {% endif %}
 </body>
 </html> 

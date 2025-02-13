@@ -143,5 +143,5 @@ MLP有两层: 一层扩展 [768 × 3072] 一层缩回 [3072 × 768]
 
 还是非常神奇的！写好之后回看了很多次，好奇这为什么产生智慧，依然觉得这个过程非常神奇!
 
-马上会写一个所有知名模型(chatgpt, claude, llama, deepseek, qwen, etc)参数的拆解。 诶我怎么把Gemini忘了？
+马上会写一个所有知名模型(chatgpt, claude, llama, deepseek, qwen, etc)参数的拆解。诶, 我怎么把Gemini忘了？
 
