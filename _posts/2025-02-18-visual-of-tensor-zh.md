@@ -5,9 +5,9 @@ date: 2025-02-18
 lang: zh
 ---
 
-# 让我们先看矩阵乘法
+# 矩阵乘法
 
-注意两个矩阵的维度是如何匹配的，这种模式在transformer中被广泛使用。
+让我们先看看矩阵乘法，注意两个矩阵的维度是如何匹配的，这种模式在transformer中被广泛使用。
 
 ![mat_mul]({{ '/assets/images/posts/mat_mul.png' | relative_url }})
 

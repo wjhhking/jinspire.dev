@@ -5,7 +5,7 @@ date: 2025-02-18
 lang: en
 ---
 
-# Visualize Matrix Multiplication
+# Matrix Multiplication
 
 Let's visualize matrix multiplication first. Note how the dimensions of the two matrixs are matched, and similar patterns are used in the transformer. 
 
