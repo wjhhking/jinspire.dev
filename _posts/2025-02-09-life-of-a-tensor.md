@@ -38,8 +38,7 @@ Looking up the embedding table:
 
 # Attention
 
-In GPT-2, Multi-Head Attention has 12 heads.
-
+In GPT-2 small, Multi-Head Attention has 12 heads.
 
 A key mathematical relationship: 12 * 64 = 768.
 
@@ -55,7 +54,7 @@ We split one of the 768 into 12 heads, each of which is [768, 64].
 
 Q one head = [5, 768] * [768, 64] = [5, 64]
 
-Q = 12个头 = [5, 64] + [5, 64] + ... + [5, 64] = [5, 12 * 64] = [5, 768]
+Q = 12 heads = [5, 64] + [5, 64] + ... + [5, 64] = [5, 12 * 64] = [5, 768]
 
 K and V are the same.
 
