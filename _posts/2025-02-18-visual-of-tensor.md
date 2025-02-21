@@ -38,11 +38,11 @@ Input sentence: The capital of France is ___
 This forms a [1, 5] vector.
 
 The data now enters an embedding table of size [50,000, 768] to look up:
-- The     = [0.316, 0.524,0.063, 0.481, 0.266, …]
-- capital = [0.123, 0.234, 0.345, 0.456, 0.567, …]
-- of      = [0.432, 0.543, 0.654, 0.765, 0.876, …]
-- France  = [0.543, 0.654, 0.765, 0.876, 0.987, …]
-- is      = [0.654, 0.765, 0.876, 0.987, 0.098, …]
+- The     = [0.316, 0.524, 0.063, …]
+- capital = [0.123, 0.234, 0.345, …]
+- of      = [0.432, 0.543, 0.654, …]
+- France  = [0.543, 0.654, 0.765, …]
+- is      = [0.654, 0.765, 0.876, …]
 
 -> Thus, we obtain a [5, 768] matrix!
 
@@ -84,7 +84,9 @@ Then, use the original embedding table [50,000, 768] to map back to a Token ID, 
 
 # Parameters of Models
 
-All the transformer models have a similar structure, just different numbers of layers (12), d_model(768), d_head(64), etc. The appendix shows the number of parameters for the famous models. Latest research aims to reduce the total number of parameters using different attention mechanisms (e.g., MLA, NSA), which is not the focus of this article.
+All the transformer models have a similar structure, just different numbers of layers(12), d_model(768), d_head(64), etc. The appendix shows the number of parameters for the famous models. 
+
+Latest research aims to reduce the total number of parameters using different attention mechanisms (e.g., MLA, NSA), which is not the focus of this article.
 
 Thank you for reading! 🎉 🥰 🫡
 
