@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "图解大模型生成过程"
+title: "图解大模型生成"
 date: 2025-02-18
 lang: zh
 ---
