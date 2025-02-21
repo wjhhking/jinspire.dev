@@ -27,7 +27,7 @@ Grey: Model Weights
 
 ![embedding_layer]({{ '/assets/images/posts/embedding_layer.png' | relative_url }})
 
-We start with the embedding layer. Assume one word equals one token.
+Start with the embedding layer. Assume one word equals one token.
 
 Input sentence: The capital of France is ___
 
@@ -52,11 +52,13 @@ We pad (appending 0s) it to length 1024, which now becomes [1024, 768].
 
 ![transformer_block]({{ '/assets/images/posts/transformer_block.png' | relative_url }})
 
-We will have three key matrices: Q, K, V. Each is [768, 64] * 12.
+Three key matrices: Q, K, V. Each is [768, 64] * 12.
 
 For one head, [1024, 768] * [768, 64] = [1024, 64]
 
-Q 12 heads = [1024, 64] + [1024, 64] + ... + [1024, 64] = [1024, 12 * 64] = [1024, 768]
+Q 12 heads = [1024, 64] + [1024, 64] + ... + [1024, 64] 
+
+= [1024, 64] * 12 = [1024, 768]
 
 K and V are the same.
 
@@ -76,9 +78,9 @@ Change: [1024, 768] -> [1024, 3072] -> [1024, 768]
 
 ![transformer_tensors]({{ '/assets/images/posts/transformer_tensors.png' | relative_url }})
 
-We extract the last row: [768]
+Extract the last row: [768]
 
-Then, we use the original embedding table [50,000, 768] to map back to a Token ID, retrieving the final word: Paris
+Then, use the original embedding table [50,000, 768] to map back to a Token ID, retrieving the final word: Paris
 
 # Parameters of Models
 
