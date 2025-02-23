@@ -154,7 +154,7 @@ Summary: The profundity of this chapter lies in—
 
 #### ➡️ Ultimately, philosophy isn't about solving problems, but making us realize why we raise these questions.
 
-# What's Critical?
+# What are the criticisms?
 
 While this discussion presents a unique philosophical perspective and profundity, it can be critiqued from several aspects:
 
@@ -212,7 +212,7 @@ Chapter One proposes a novel "existence theory," but:
 
 **🚀 Finally, while this discussion has philosophical innovation, its excessive exclusion of empirical science, language philosophy, and modern physics might cause its "being theory" to lose practical support.**
 
-# Author (Handwritten by Jinspire)
+# Author's Review (Handwritten by Jinspire)
 
 The criticisms are basically invalid. Various scientific support appears in subsequent chapters.
 
@@ -223,4 +223,3 @@ Amazingly, long after Professor Dongyue published, many events had already trans
 This article profoundly interprets "existence precedes essence" and "I think therefore I am," and continues thinking and questioning beyond these foundations.
 
 So, "why does the questioner, as an existent, inquire about existence?"
-
