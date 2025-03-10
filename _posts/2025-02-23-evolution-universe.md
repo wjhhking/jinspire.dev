@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Read 《A Unified Theory of Evolution》 with ChatGGT"
+title: "Read 《A Unified Theory of Evolution》 with ChatGPT"
 date: 2025-02-23
 lang: en
 ---
 
 # The purest philosophy, the ultimate questioning.
 
-Starting a new series: Reading "General Theory of Evolution" with Deepseek.
+Starting a new series: Reading "General Theory of Evolution" with ChatGPT.
 
 Website: https://yong-deepseek-du-wu-yan-tong-lun.gitbook.io/yong-deepseek-du-wu-yan-tong-lun
 
