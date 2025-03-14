@@ -9,10 +9,6 @@ lang: en
 
 When a large model generates a new word, how do the matrices inside the model change?
 
-![attn_is_all_you_need]({{ '/assets/images/posts/attn_is_all_you_need.png' | relative_url }})
-
-The above image from "Attention is all you need" is quite intuitive, which captures the essence of the transformer's operation. But what exactly is happening inside the model?
-
 # Matrix Multiplication
 
 Let's visualize matrix multiplication first. Note how the dimensions of the two matrices are matched, we will use this pattern in below visualizations. 

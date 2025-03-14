@@ -7,9 +7,9 @@ lang: en
 
 # The purest philosophy, the ultimate questioning.
 
-Starting a new series: Reading "General Theory of Evolution" with ChatGPT.
+Starting a new series: Reading《A Unified Theory of Evolution》 with ChatGPT.
 
-Website: [Gitbook Link](https://yong-deepseek-du-wu-yan-tong-lun.gitbook.io/yong-deepseek-du-wu-yan-tong-lun). I started Chinese version, which I will translate to English after the first path in Chinese.
+Website: [Read <<A Unified Theory of Evolution>> with ChatGPT](https://yong-deepseek-du-wu-yan-tong-lun.gitbook.io/yong-deepseek-du-wu-yan-tong-lun). I started Chinese version, which I will translate to English after the first path in Chinese.
 
 I discovered that Gitbook seems simpler than this blog for formatting, including bold text and paragraph settings.
 
