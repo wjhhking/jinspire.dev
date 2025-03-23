@@ -88,7 +88,7 @@ Attention output = [5, 768]
 
 MLP has two layers: one expands [768 × 3072] and one contracts [3072 × 768]
 
-Change: [5, 768] -> [5, 3072] -> [5, 768] 
+Change: [5, 768] -> [5, 3072] -> [5, 768]
 
 This is still [5, 768].
 
@@ -108,17 +108,17 @@ Then, we use the original embedding table [50,000, 768] to map back to a Token I
 
 # Parameter Count Calculation
 
-50000 * 768 + (768 * 768 * 3 + 768 * 768 + 768 * 3072 * 2) * 12 
+50000 * 768 + (768 * 768 * 3 + 768 * 768 + 768 * 3072 * 2) * 12
 
 = 38.4M + (7.08M) × 12 = 124M
 
 They are: embedding(50000, 768), KQV weights(768, 768), output projection(768, 768), MLP weights(768, 3072) * 2, for 12 layers.
 
 Breakdown of Parameters:
-- 38.4M → Embedding 
+- 38.4M → Embedding
 - 21.2M → KQV matrix
 - 7.1M → Output Projection
-- 56.6M → MLP 
+- 56.6M → MLP
 
 A comparison of GPT-2 model sizes:
 

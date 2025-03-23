@@ -11,7 +11,7 @@ When a large model generates a new word, how do the matrices inside the model ch
 
 # Matrix Multiplication
 
-Let's visualize matrix multiplication first. Note how the dimensions of the two matrices are matched, we will use this pattern in below visualizations. 
+Let's visualize matrix multiplication first. Note how the dimensions of the two matrices are matched, we will use this pattern in below visualizations.
 
 ![mat_mul]({{ '/assets/images/posts/mat_mul.png' | relative_url }})
 
@@ -52,7 +52,7 @@ Three key matrices: Q, K, V. Each is [768, 64] * 12.
 
 For one head, [1024, 768] * [768, 64] = [1024, 64]
 
-Q 12 heads = [1024, 64] + [1024, 64] + ... + [1024, 64] 
+Q 12 heads = [1024, 64] + [1024, 64] + ... + [1024, 64]
 
 = [1024, 64] * 12 = [1024, 768]
 
@@ -68,7 +68,7 @@ Attn = Softmax(QK^T/√d) * V = [1024, 768]
 
 MLP has two layers: one expands 4x using [768 × 3072] and one contracts using [3072 × 768]
 
-Change: [1024, 768] -> [1024, 3072] -> [1024, 768] 
+Change: [1024, 768] -> [1024, 3072] -> [1024, 768]
 
 # The Whole Process
 
@@ -80,7 +80,7 @@ Then, use the original embedding table [50,000, 768] to map back to a Token ID, 
 
 # Parameters of Models
 
-All the transformer models have a similar structure, just different numbers of layers(12), d_model(768), d_head(64), etc. The appendix shows the number of parameters for the famous models. 
+All the transformer models have a similar structure, just different numbers of layers(12), d_model(768), d_head(64), etc. The appendix shows the number of parameters for the famous models.
 
 Latest research aims to reduce the total number of parameters using different attention mechanisms (e.g., MLA, NSA), which is not the focus of this article.
 
