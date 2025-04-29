@@ -51,7 +51,7 @@ However, when AI behavior starts diverging from your intent (especially in codin
 At that point, **only exact words** — exact descriptions — will reliably get what you want.
 Interestingly, I've noticed that word comprehension across different models is starting to converge.
 
-## Do You Need to Understand the Generated Code?
+## Do you need to understand the generated code?
 
 One key question to ponder: **Do you need to fully understand the AI-generated code?**
 
@@ -78,7 +78,7 @@ I once worried: after relying so heavily on AI for code generation, maybe I coul
 
 I was wrong.
 
-If can still write good code, with good quality and good performance.
+I can still write good code, with good quality and good performance.
 
 The proof is that I'm taking the Stanford cs336, building LLM from scratch, a extremly coding intensive course, and recommended not to use AI.
 
