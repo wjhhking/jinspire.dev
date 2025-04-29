@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Vibe Coding | Prompts | and AI Thoughts"
+title: "Vibe Coding, Prompts, and New Thoughts"
 date: 2025-04-28
 lang: en
 ---
@@ -8,6 +8,8 @@ lang: en
 It's good to share some thoughts again!
 
 # My Current AI Tools
+
+Have been super busy and efficient these days. I love vibe coding! My current setup is:
 
 - **Coding:** Cursor + Gemini 2.5 (95% of the time). Occasionally use Claude 3.7 + O3 for debugging, but it's more of the case that if Gemini can't debug, the rest can't either.
 - **Production, Deployment:** Claude. Even for Google Cloud, which is pretty funny.

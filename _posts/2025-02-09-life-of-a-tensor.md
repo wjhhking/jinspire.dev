@@ -3,6 +3,7 @@ layout: post
 title: "Life of a Tensor: How LLM's Matrix Dimensions Evolve"
 date: 2025-02-12
 lang: en
+published: false
 ---
 
 # The capital of France is ___

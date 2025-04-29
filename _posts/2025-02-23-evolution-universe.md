@@ -3,6 +3,7 @@ layout: post
 title: "Read 《A Unified Theory of Evolution》 with ChatGPT"
 date: 2025-02-23
 lang: en
+published: false
 ---
 
 # The purest philosophy, the ultimate questioning.
