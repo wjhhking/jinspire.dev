@@ -45,10 +45,12 @@ As AI models become stronger, I've noticed that effective prompting often leans 
 > Copy-paste error messages — sometimes pages of them — into an LLM without any extra framing or instructions.
 
 Extending that idea:
-For many tasks, providing a small context window and a simple instruction is enough. That's usually my first strategy now — *"give less, get more."*
+For many tasks, copy-paste a large context but a simple instruction is enough. That's usually my first strategy now — *"give less, get more."*
 
 However, when AI behavior starts diverging from your intent (especially in coding or multi-step tasks), you must become hyper-precise.
+
 At that point, **only exact words** — exact descriptions — will reliably get what you want.
+
 Interestingly, I've noticed that word comprehension across different models is starting to converge.
 
 ## Do you need to understand the generated code?
@@ -58,7 +60,7 @@ One key question to ponder: **Do you need to fully understand the AI-generated c
 My personal philosophy:
 
 - **High level:** Absolutely yes. You must understand the overall design, flow, architecture, and data structures — otherwise you are flying blind.
-- **Low level:** Let go. You don't need to micro-read every helper function unless it is part of the **core algorithm**, **agent loop**, or **critical performance path**. Those parts demand deep understanding.
+- **Low level:** Let go most part. You don't need to micro-read every helper function unless it is part of the **core algorithm**, **agent loop**, or **critical performance path**. Those parts demand deep understanding.
 
 For me, the real art is knowing **when to dive deep** and **when to trust AI**.
 I enjoy discussing architecture and data structure design for hours — that's where most of the thinking should happen.
@@ -72,7 +74,7 @@ So, the workflow is usually:
 4. **Debug** — Try paste the error trace into AI first, and if it is a hard bug, open a web page and debug together with Gemini 2.5.
 5. Go back to 1 and iterate.
 
-## Can you still code?
+## Can I still code?
 
 I once worried: after relying so heavily on AI for code generation, maybe I couldn't write code independently anymore.
 
@@ -80,13 +82,13 @@ I was wrong.
 
 I can still write good code, with good quality and good performance.
 
-The proof is that I'm taking the Stanford cs336, building LLM from scratch, a extremly coding intensive course, and recommended not to use AI.
+The proof is that I'm taking the Stanford cs336, building LLM from scratch, a extremly coding intensive course, and recommended not to use AI. I've done a fairly good job in doing the assignments.
 
 ---
 
 # Thought Experiment
 
-Imagine you are struck by amnesia and consistently lose your recent memory, but maintain your intelligence and language skills. You basically don't have a sense of time anymore.
+Imagine you are struck by amnesia and consistently lose your recent memory, but maintain your intelligence and language skills. Basically, you don't have a sense of time anymore.
 
 If someone else gave you a task, would you be able to solve it?
 
