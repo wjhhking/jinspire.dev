@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: 'en' }}">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,20 +12,10 @@
     <main>
         <header>
             <h1>{{ site.title }}</h1>
-            <p>{% if page.lang == 'zh' %}{{ site.description_zh }}{% else %}{{ site.description }}{% endif %}</p>
+            <p>{{ site.description }}</p>
             <nav class="nav-container">
                 {% if page.layout == 'post' %}
-                    {% if page.lang == 'en' %}
-                        <a href="{{ '/en/' | relative_url }}" class="nav-link">←</a>
-                    {% else %}
-                        <a href="{{ '/' | relative_url }}" class="nav-link">←</a>
-                    {% endif %}
-                {% else %}
-                    {% if page.lang == 'en' %}
-                        <a href="{{ '/' | relative_url }}" class="nav-link">中文</a>
-                    {% else %}
-                        <a href="{{ '/en/' | relative_url }}" class="nav-link">English</a>
-                    {% endif %}
+                    <a href="{{ '/' | relative_url }}" class="nav-link">←</a>
                 {% endif %}
             </nav>
         </header>
@@ -33,7 +23,7 @@
         {{ content }}
 
         <footer>
-            <p>© {{ site.time | date: '%Y' }} {{ site.title }} · <a href="mailto:{{ site.email }}">{% if page.lang == 'zh' %}邮箱{% else %}Email{% endif %}</a></p>
+            <p>© {{ site.time | date: '%Y' }} {{ site.title }} · <a href="mailto:{{ site.email }}">Email</a></p>
         </footer>
     </main>
 
@@ -52,4 +42,4 @@
     </script>
     {% endif %}
 </body>
-</html> 
+</html>
