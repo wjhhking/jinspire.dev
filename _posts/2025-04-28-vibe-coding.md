@@ -3,7 +3,7 @@ layout: post
 title: "Vibe Coding, Prompts, and New Thoughts"
 date: 2025-04-28
 lang: en
-hidden: true
+published: false
 ---
 
 It's good to share some thoughts again!
