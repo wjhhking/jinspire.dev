@@ -245,7 +245,7 @@ footer a {
                  "WenQuanYi Micro Hei",
                  sans-serif;
     line-height: 1.8;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
 }
 
 /* Improve article content readability */
@@ -545,4 +545,20 @@ footer a {
   padding: 5px 10px;
   cursor: pointer;
   z-index: 1001;
+}
+
+.color-grey {
+    color: #6c757d;
+}
+
+.color-brown {
+    color: #8B4513;
+}
+
+.color-blue {
+    color: #0000CD;
+}
+
+.color-green {
+    color: #006400;
 }
