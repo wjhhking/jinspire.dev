@@ -16,11 +16,12 @@ Here are some of the most practical insights I found:
 
 So, what are some practical implications for our own lives?
 
-- **Embrace Lifelong Pretraining** Keep exposing yourself to new information, ideas, and perspectives — regardless of age.
+- **Embrace Lifelong Pretraining.** Keep exposing yourself to new information, ideas, and perspectives — regardless of age.
 - **Output, don’t just read/watch/listen (encode).** Teach, write, explain — that’s how knowledge sticks.
-- **Finetune intentionally.** Don’t just let work or culture shape you passively. Choose environments that reinforce what you want to become.
+- **Finetune intentionally.** Seek out environments and mentors that provide the right supervision for the person you aspire to be.
 - **Be conscious of your reward model.** If you don’t set it, the world sets it for you. And the world’s incentives (likes, clicks, quick dopamine) are rarely aligned with your deepest goals.
 - **Learn continually and on-demand.** Shift from “learn first, then do” to “learn while doing.” Treat every task as a chance to update your model weights.
+
 
 ## A Few New Thoughts
 
@@ -50,15 +51,17 @@ Recently, I’ve been extending this analogy further:
 
 This lens is not perfect, but it makes us reflect: **if we are like LLMs, how can we train ourselves better?**
 
+
 ## Pretraining: The Foundation of Lifelong Schooling
 
 Most of school life is about learning and taking exams — more or less like predicting or selecting the next token.
 
 At first, it feels like rote memorization. But over time, patterns emerge and knowledge crystallizes, allowing us to master a subject and generalize beyond it.
 
-AI researcher Denny Zhou has argued that reasoning ability already emerges during pretraining. If it’s not in the pretrained base, it’s hard to acquire later. Humans are the same: without a broad foundation, it is difficult to pick up deep reasoning skills later in life.
+AI researcher Denny Zhou has argued that reasoning ability already emerges during pretraining([link](https://www.youtube.com/watch?v=ebnX5Ur1hBk)). If it’s not in the pretrained base, it’s hard to acquire later. Humans are the same: without a broad foundation, it is difficult to pick up deep reasoning skills later in life.
 
 That’s why pretraining is so important. In society, we even see a bias toward certain schools — similar to choosing certain base models to build on.
+
 
 ## Supervised Fine-Tuning (SFT): Adapting in the Workplace
 
@@ -67,6 +70,7 @@ The work environment is like SFT.
 Even if our base models (educational backgrounds) differ, the process of being shaped by professional expectations can change us dramatically. A workplace rewards certain responses over others — just like supervised finetuning. Over time, we learn to produce the outputs that are expected, valued, and rewarded.
 
 This also suggests we should **finetune intentionally**: choose environments, mentors, and projects that push us in the direction we actually want to grow. This means actively seeking projects that stretch you, finding mentors who provide the 'supervision' you need, and even consciously adopting the communication styles of people you admire.
+
 
 ## Reinforcement Learning (RL): Navigating the World's Feedback
 
@@ -89,6 +93,7 @@ So how do we fix it?
 - **On-demand learning.** Richard Sutton, one of the fathers of RL, proposed in his recent [“Oak” talk](https://www.youtube.com/watch?v=gEbbGyNkR2U) that we should train directly for what is being used, instead of separating pretraining, SFT, and RL. This applies even more to humans: we learn best when the reward is tied directly to real-world use — what Andrej Karpathy calls “on-demand learning.”
 
 Of course, we are not just LLMs. We have consciousness, emotions, and a rich inner world that AI doesn't. This analogy is a map, not the territory. But like any good map, it can help us navigate the complex landscape of personal growth.
+
 
 ## What Are the Implications for Ourselves?
 
