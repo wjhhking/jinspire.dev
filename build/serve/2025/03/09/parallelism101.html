@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinspire</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+     
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Jinspire</h1>
+            <p>Writing about curiosity, insights, and reflection.</p>
+            <nav class="nav-container">
+                
+            </nav>
+        </header>
+
+        <article class="content">
+    <h1>Parallelism101: Introduction to LLM Parallelism</h1>
+    <span class="date">
+        
+            March 09, 2025
+        
+    </span>
+
+    <!-- 添加TOC切换按钮 - 根据语言显示不同文本 -->
+    <button class="toc-toggle">
+        Catalog
+    </button>
+
+    <!-- 添加TOC容器 -->
+    <div class="toc-container" style="display: none;">
+        <h4>Catalog</h4>
+        <ul class="toc-list" id="toc"></ul>
+    </div>
+
+    <div class="post-content">
+        
+<h1 id="the_problem">The Problem</h1>
+
+<p>The whole point is trying to explain how to fit a <strong>400B model into GPUs</strong>.</p>
+
+<p><img src="/assets/images/posts/parallelism_final.png" alt="parallelism_final" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>In college, if you sign up for a course named <strong>“Introduction to xxx”</strong>, you know you are in trouble. You need to spend days and nights on that course. Those include <strong>“introduction to algorithms”</strong>, which no one knows how to solve the practice problems; <strong>“introduction to computer systems”</strong>, which brings you C and assembly languages; not to mention the braindead <strong>“introduction abstract algebra”</strong> or <strong>“introduction to compilers”</strong>. While hard and time consuming, if you master those “introductory” courses, you usually have a good start and the learning curve will be much smoother.</p>
+
+<p><strong>The good news is, you find this article.</strong></p>
+
+<p>This will give you a solid foundational understanding of the parallelism in LLM training. Luckily, for most people, including some researchers and engineers working closely to the AI world, would not need more knowledge than what is covered in this article. <strong>The intuition behind things are most important.</strong></p>
+
+<h1 id="overview">Overview</h1>
+
+<h3 id="data_parallelism">Data parallelism</h3>
+
+<p>If you have a small model, you can fit into one GPU - great. Assume you want to train faster - say use 4 GPUs. You can just have one copy (replica) in each GPU, and let each of them learn separately and sync what they have learned. This is what is called <strong>“Data parallelism”</strong>. This is probably the most straightward thing people come up with naturally. They are other improvements, e.g., <strong>ZeRO</strong>, which can futher save your GPU memory.</p>
+
+<h3 id="model_parallelism">Model parallelism</h3>
+
+<p>Things get tricky when your model gets larger. For example, a <strong>70B model</strong> (e.g., QwQ 70B) with FP8 (float point with 8 bits) would easily exceed 150GBs of memory. Obviously, one GPU (even H100 with 80GB) is not enough. You need to think about ways to <strong>cut the model</strong>.</p>
+
+<p>Recall we are training neural networks, which consists of layers. My other article <a href="https://jinspire.dev/2025/02/18/visual-of-tensor.html">Visualizing Generation in LLM</a> gives a good intuition of layers and tensors. One thing to come up naturally is to cut by layers (e.g., GPU 1 has layer 1-10, GPU 2 has layer 11-20). This is improved by using <strong>“Pipeline Parallelism”</strong>.</p>
+
+<p><img src="/assets/images/posts/parallelism_cut.png" alt="parallelism_cut" /></p>
+
+<p>There is another technique called <strong>“tensor parallelism”</strong> that cuts each layer, which you can imagine needs some good engineering. Above graph shows the idea of <strong>cutting by layers</strong> and <strong>cutting by tensor</strong>.</p>
+
+<p>For Mixture of Experts (MoEs) e.g., Switch Transformer and DeepSeek V3, you can obviously cut by experts (e.g., each GPU has 4 experts). This is called <strong>“Expert parallelism”</strong>.</p>
+
+<p>Those are essentially it. This naturally explains what Nvidia is doing and why NVlink helps, and explains why XAI built a “200k” GPU cluster, and very soon Grok-3 became the State of the Art (SOTA) on the most popular benchmark.</p>
+
+<h1 id="the_full_story">The full story</h1>
+
+<p>Hugging Face just released a <a href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high_level_overview">ultralarge model training playbook</a> which you will easily lose interest if you don’t know what you are looking for.</p>
+
+<p><a href="https://github.com/stanford-cs336/spring2024-assignment2-systems">CS336 assignment2</a> provides another good practice to code parallelism.</p>
+
+<p>But those are <strong>“advanced courses”</strong>. Let’s just focus on <strong>Parallelism 101</strong>.</p>
+
+<p>In this article, I will essentially introduce 4 papers, <strong>AlexNet</strong>, <strong>GPipe</strong>, <strong>Megatron</strong>, and <strong>MoE</strong>.</p>
+
+<p>Before we started, I’d like to introduce the alchemy part of LLM training: unlike theoretical research, this is <strong>experimental science</strong>. People try things and come up with the theory later.</p>
+
+<h2 id="alexnet">AlexNet</h2>
+
+<p>By January 2025, the Alexnet paper <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xegzhJcAAAAJ&citation_for_view=xegzhJcAAAAJ:u5HHmVD_uO8C">Imagenet classification with deep convolutional neural networks</a> (2012) has been cited <strong>172,000 times</strong> in Google Scholar. It was groundbreaking in deep learning, demonstrating the power of convolutional neural networks (CNNs) at scale and revolutionizing computer vision. The model’s superior performance in the ImageNet competition marked the beginning of the deep learning era, inspiring a wave of advancements in AI.</p>
+
+<p>A key challenge in training AlexNet was <strong>GPU memory constraints</strong> — the model was too large to fit on a single GPU available at the time (NVIDIA GTX 580 with 3GB memory). To overcome this, <strong>model parallelism</strong> was introduced, where the network was split across two GPUs. One GPU handled half of the model’s filters in each convolutional layer, while the other GPU processed the remaining half. Communication between GPUs occurred only at certain layers, minimizing overhead while leveraging the combined memory and computational power of both GPUs.</p>
+
+<p>This approach paved the way for large-scale deep learning, demonstrating that computational constraints could be overcome through parallelization techniques, an idea that remains fundamental in training today’s massive neural networks.</p>
+
+<h3 id="ilya_sutskever">Ilya Sutskever</h3>
+
+<p>I’d like to introduce <strong>Ilya Sutskever</strong> a bit more, who has been a central figure in modern AI — not just as a co-founder of OpenAI but as a researcher whose contributions span the <strong>foundational breakthroughs of deep learning</strong>. His name appears as a co-author on some of the most influential <a href="https://scholar.google.com/citations?user=x04W_mMAAAAJ&hl=en&oi=ao">papers</a>, including:</p>
+
+<ul>
+<li><strong><a href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">AlexNet</a></strong> – Ignited the deep learning revolution in computer vision. 172,000+ citations.</li>
+
+<li><strong><a href="https://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf">Dropout</a></strong> – A widely used regularization technique to prevent overfitting. 50,000+ citations.</li>
+
+<li><strong><a href="https://arxiv.org/abs/1409.3215">Sequence to Sequence Learning</a></strong> – Laid the groundwork for modern transformer models. 28,000+ citations.</li>
+
+<li><strong><a href="https://www.nature.com/articles/nature16961">AlphaGo</a></strong> – The first AI system to defeat human champions in Go. Nature, and I gues I don’t need to introduce AlphaGo.</li>
+
+<li><strong><a href="https://arxiv.org/abs/1603.04467">TensorFlow</a></strong> The tensor flow paper. 58,000+ citations.</li>
+</ul>
+
+<p>Unlike many modern AI papers with <strong>dozens of co-authors</strong>, many of Ilya’s early works had just a few key contributors, underscoring his <strong>deep, hands-on involvement</strong>. His research has not only <strong>shaped the trajectory of AI</strong> but has also enabled the <strong>large-scale training</strong> of neural networks that power today’s models.</p>
+
+<p>It’s no surprise that <strong>Geoffrey Hinton</strong> has spoken so highly of him—not just for his <strong>groundbreaking research</strong>, but also as he once said:</p>
+
+<blockquote>
+<p><em>“I’m particularly proud of the fact that one of my students fired Sam Altman”</em></p>
+</blockquote>
+
+<p><a href="https://www.youtube.com/shorts/45L4VxFK_KU">Youtube link</a> — right before receiving the <strong>Nobel Prize in Physics</strong>.</p>
+
+<p>Another fun fact is that the three authors formed a company DNNresearch and was acquired by Google soon. After realizing the importance of GPUs, Google started to build <strong>TPU</strong>.</p>
+
+<h1 id="data_parallelism_2">Data Parallelism</h1>
+
+<p>I think it’s still important to illustrate <strong>Data Parallelism</strong> — a natural yet <strong>crucial</strong> technique in distributed deep learning.</p>
+
+<h3 id="how_data_parallelism_works"><strong>How Data Parallelism Works</strong></h3>
+
+<p><img src="/assets/images/posts/data_parallelism.png" alt="data_parallelism" /></p>
+
+<p>In <strong>Data Parallelism</strong>, each <strong>GPU holds a complete copy of the model</strong>, referred to as a <strong>replica</strong>. When processing a batch of data, the batch is <strong>split across GPUs</strong>, with each GPU independently computing <strong>forward and backward passes</strong> on its assigned subset. Once gradients are computed, they are <strong>averaged and synchronized</strong> across all GPUs before updating the model’s weights.</p>
+
+<h3 id="why_data_parallelism_matters"><strong>Why Data Parallelism Matters</strong></h3>
+
+<p>Before the <strong>Transformer era</strong>, Data Parallelism was particularly <strong>efficient</strong>, as most models still <strong>fit within the memory of a single GPU</strong>. It allowed training to scale efficiently across multiple GPUs without requiring major changes to the model itself.</p>
+
+<p>With the rise of <strong>Transformers and larger architectures</strong>, <strong>Data Parallelism alone is no longer sufficient</strong> due to memory constraints. Instead, it is often <strong>combined with Model Parallelism and Pipeline Parallelism</strong> to handle the growing size of models.</p>
+
+<h3 id="zero_and_beyond"><strong>ZeRO and Beyond</strong></h3>
+
+<p>I won’t dive into <strong>ZeRO (Zero Redundancy Optimizer)</strong>, which further <strong>optimizes memory usage</strong> by reducing the redundancy of model weights across replicas. However, the key idea is to <strong>reduce memory overhead</strong> in Data Parallelism while keeping its scalability benefits.</p>
+
+<p><img src="/assets/images/posts/zero_parallelism.png" alt="zero_parallelism" /></p>
+
+<p>For a deeper dive into memory-efficient training, check out the <strong>ZeRO paper</strong>: 🔗 <strong><a href="https://arxiv.org/abs/1910.02054">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</a></strong></p>
+
+<p>As models continue to scale, <strong>data parallelism</strong> alone is not enough.</p>
+
+<h1 id="pipeline_parallelism"><strong>Pipeline Parallelism</strong></h1>
+
+<p>It is natural to split the model by layers, which introduces some inefficiencies that most of the time GPUs are idle.</p>
+
+<p>Now, let’s talk about <strong>GPipe</strong>, another <strong>foundational work</strong> from Google that significantly advanced <strong>efficient model training</strong> using <strong>Pipeline Parallelism</strong>.</p>
+
+<p>I had the opportunity to work with <strong>Yanping Huang</strong>, the first author, during my time at Google. He was promoted fast🚀. The last two authors, <strong>Yonghui Wu</strong> (who recently joined TikTok) and <strong>Zhifeng Chen</strong>, are also <strong>key figures</strong> in deep learning research and <strong>influential contributors</strong> to large-scale model training.</p>
+
+<h3 id="how_gpipe_works_microbatching__reducing_bubble_time"><strong>How GPipe Works: Micro-Batching &amp; Reducing “Bubble” Time</strong></h3>
+
+<p>A typical <strong>Google paper</strong> is known for its <strong>well-crafted figures</strong>, and <strong>GPipe is no exception</strong>. See below image for illustrating the key idea. One of its <strong>key contributions</strong> is the introduction of <strong>micro-batching</strong>, which significantly <strong>reduces “bubble” time</strong> in <strong>pipeline parallelism</strong>.</p>
+
+<p><img src="/assets/images/posts/pipeline_parallelism.png" alt="pipeline_parallelism" /></p>
+
+<h3 id="what_is_bubble_time"><strong>What is “Bubble” Time?</strong></h3>
+
+<p>In <strong>Pipeline Parallelism</strong>, large models are <strong>split into multiple stages</strong>, each running on a separate GPU. However, when training starts, some GPUs remain <strong>idle</strong> while waiting for the previous stages to complete their computations. This <strong>idle period</strong>, known as <strong>“bubble” time</strong>, leads to inefficient hardware utilization.</p>
+
+<h3 id="how_microbatching_fixes_this_issue"><strong>How Micro-Batching Fixes This Issue</strong></h3>
+
+<p>GPipe introduces <strong>micro-batching</strong>, where a large batch is <strong>split into smaller micro-batches</strong> that are sequentially processed through the pipeline. This allows different stages of the model to start working on <strong>new micro-batches before the previous ones have fully completed</strong>, significantly <strong>reducing idle time</strong>.</p>
+
+<h3 id="_key_benefits_of_microbatching_in_gpipe">🔹 <strong>Key Benefits of Micro-Batching in GPipe:</strong></h3>
+
+<ul>
+<li><strong>Minimizes bubble time</strong>, keeping all GPUs engaged and reducing wasted computation.</li>
+
+<li><strong>Improves memory efficiency</strong>, making it possible to train <strong>larger models</strong>.</li>
+
+<li><strong>Enhances parallelism</strong>, leading to <strong>better hardware utilization</strong> and <strong>faster training convergence</strong>.</li>
+</ul>
+
+<p>By <strong>breaking the model into pipeline stages</strong> and processing <strong>smaller chunks of data simultaneously</strong>, GPipe achieves a <strong>smooth training flow</strong>, ensuring that <strong>no GPU sits idle for long</strong>. This idea remains <strong>critical in scaling modern deep learning models</strong>.</p>
+
+<p>For a deeper dive, check out the GPipe paper: 🔗 <strong><a href="https://arxiv.org/abs/1811.06965">GPipe: Efficient Training of Giant Neural Networks Using Pipeline Parallelism</a></strong></p>
+
+<h3 id="question_time_"><strong>Question Time!</strong> 🎯</h3>
+
+<p>For a <strong>LayerNorm</strong>, does it normalize on the <strong>global batch</strong> or the <strong>micro-batch</strong>?</p>
+
+<p>💡 <strong>Answer:</strong> <strong>It normalizes on the micro-batch!</strong> Since micro-batching alters how data is fed into the pipeline, normalization is performed <strong>within each micro-batch</strong>, rather than across the entire original batch. This ensures that statistics like <strong>mean and variance</strong> are computed locally for each micro-batch, maintaining consistency throughout training.</p>
+
+<h1 id="tensor_parallelism">Tensor Parallelism</h1>
+
+<p>By <strong>2019</strong>, researchers working on <strong>large language models (LLMs)</strong> primarily focused on <strong>model parallelism by layers</strong> — dividing models <strong>vertically</strong> across GPUs, where each GPU handled a different set of layers.</p>
+
+<p><img src="/assets/images/posts/parallelism_cut.png" alt="parallelism_cut" /></p>
+
+<p>However, an alternative approach had been explored: <strong>cutting the model in a different direction</strong>. While earlier attempts struggled with efficiency and complexity, it wasn’t until <strong>Megatron-LM</strong> that <strong>“non-intrusive” tensor parallelism</strong> produced <strong>significant improvements</strong>.</p>
+
+<h3 id="from_layer_splitting_to_tensor_parallelism"><strong>From Layer Splitting to Tensor Parallelism</strong></h3>
+
+<ul>
+<li><strong>Layer-wise model parallelism</strong> (top diagram): Each GPU is responsible for a subset of layers, sequentially passing activations to the next GPU.</li>
+
+<li><strong>Tensor parallelism</strong> (bottom diagram): Instead of cutting the model <strong>by layers</strong>, it is <strong>split horizontally</strong> within each layer. Each GPU handles part of the same layer’s computations, reducing memory overhead while enabling efficient parallel execution.</li>
+</ul>
+
+<h3 id="key_challenges__innovations"><strong>Key Challenges &amp; Innovations</strong></h3>
+
+<p><img src="/assets/images/posts/tensor_parallelism.png" alt="tensor_parallelism" /></p>
+
+<ol>
+<li><strong>Shared Computation</strong>: Some components, like embeddings and layer normalization, must remain synchronized across GPUs to maintain consistency.</li>
+
+<li><strong>High-Speed Interconnects</strong>: <strong>NVLink</strong>, NVIDIA’s high-bandwidth GPU interconnect, is essential for <strong>fast communication between GPUs</strong> in tensor parallelism.</li>
+</ol>
+
+<p>Megatron’s <strong>tensor parallelism</strong> paved the way for <strong>scaling models beyond a single GPU’s memory limits</strong>, a crucial advancement for training <strong>GPT-3 and beyond</strong>. Today, <strong>hybrid parallelism</strong> (combining tensor, pipeline, and data parallelism) is the standard for training <strong>massive</strong> neural networks efficiently.</p>
+
+<p>For a deeper dive, check out the Megatron paper: 🔗 <strong><a href="https://arxiv.org/abs/1909.08053">Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism</a></strong></p>
+
+<h1 id="expert_parallelism">Expert Parallelism</h1>
+
+<p>I wasn’t originally planning to discuss <strong>Expert Parallelism (EP)</strong>, but with <strong>DeepSeek</strong> open-sourcing <strong>DeepEP</strong>, it’s worth revisiting.</p>
+
+<h3 id="origins_of_expert_parallelism">Origins of Expert Parallelism</h3>
+
+<p>Expert Parallelism (EP) originates from the <strong><a href="https://arxiv.org/abs/2101.03961">Switch Transformer</a></strong> paper (2021), which introduced <strong>Mixture of Experts (MoE) scaling</strong> for deep learning models. This approach enables efficient <strong>trillion-parameter</strong> models by activating only a subset of “expert” layers per forward pass, significantly reducing computational costs. Some fun facts:</p>
+
+<ul>
+<li>First &amp; second authors: <strong>William Fedus</strong> and <strong>Barret Zoph</strong> both went to <strong>OpenAI</strong>. Given their MoE expertise, the rumor of <strong>GPT-4o leveraging MoE</strong> seems quite reasonable.</li>
+
+<li>Last author: <strong>Noam Shazeer</strong>, a co-inventor of the Transformer, later founded <strong>Character.AI</strong>. Interestingly, <strong>Google recently acquired Character.AI</strong>, bringing him back into the Google ecosystem.</li>
+</ul>
+
+<h3 id="deepep_from_deepseek">DeepEP from DeepSeek</h3>
+
+<p>DeepSeek’s <strong>DeepEP</strong> is now open-sourced during the Deepseek open sour week, bringing high-performance <strong>MoE-style expert parallelism</strong> to the community.</p>
+
+<p>Recall that Deepseek V3 has - <strong>256 experts</strong>, with <strong>top-8 experts</strong> selected per token. - This setup is vastly different from <strong>Mistral’s MoE (8 experts total)</strong>. - In <strong>DeepEP</strong>, each individual expert is relatively <strong>shallow</strong>, but the system’s expert routing allows for a <strong>much higher total expert count</strong> while maintaining inference efficiency. - A reasonable estimate is <strong>each GPU handles ~1-4 experts</strong>.</p>
+
+<p>Also, note that <strong>each token is generated from 8 experts</strong>. But we can tell <strong>silicon experts collaborate better than carbon experts</strong>, huah? 🤖🔥</p>
+
+<h1 id="future_reading">Future reading</h1>
+
+<h3 id="top_resources">Top resources</h3>
+
+<p>Hugging Face: <a href="https://huggingface.co/spaces/nanotron/ultrascale-playbook">ultralarge model training playbook</a></p>
+
+<p>Checkout the “Finding the Best Training Configuration” section for a practical guide.</p>
+
+<p>Hugging Face Picotron: <a href="https://github.com/huggingface/picotron">Minimalistic 4D-parallelism distributed training framework for education purpose</a></p>
+
+<p>Stanford CS336 assignment2: <a href="https://github.com/stanford-cs336/spring2024-assignment2-systems">distributed data parallel training</a></p>
+
+<h3 id="relevant_papers">Relevant Papers</h3>
+
+<p>Alexnet, GPipe, Megatron, Switch Transformer have been introduced above.</p>
+
+<p>I used to list some, but it’s not a good idea.</p>
+
+<p>Ask LLM (active learning is much more effective).</p>
+
+<h1 id="ending">Ending</h1>
+
+<p>Hugging Face article provide a good summary of what you should use given the model size and the number of GPUs.</p>
+
+<p>I don’t think it’s practical to memorize these details, and more importantly, I don’t think you should. <strong>Developing an intuition is sufficient</strong>.</p>
+
+<p>I’d like to highlight again that this is <strong>experimental science</strong> - another dimension of the alchemy for training LLM. You won’t know what generates the highest throughput until you experiment.</p>
+
+<p>Let’s review together and make sure you take something home:</p>
+
+<p><img src="/assets/images/posts/parallelism_final.png" alt="parallelism_final" /></p>
+
+    </div>
+</article>
+
+<!-- 添加TOC生成和高亮脚本 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取所有标题元素
+    const headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4');
+    const toc = document.getElementById('toc');
+    const tocContainer = document.querySelector('.toc-container');
+    const tocToggle = document.querySelector('.toc-toggle');
+    const isChinesePage = false;
+
+    // 如果没有标题，不显示TOC
+    if (headings.length === 0) {
+        tocToggle.style.display = 'none';
+        return;
+    }
+
+    // 切换目录显示
+    tocToggle.addEventListener('click', function() {
+        if (tocContainer.style.display === 'none') {
+            tocContainer.style.display = 'block';
+            tocToggle.textContent = isChinesePage ? '关闭目录' : 'Close Catalog';
+        } else {
+            tocContainer.style.display = 'none';
+            tocToggle.textContent = isChinesePage ? '目录' : 'Catalog';
+        }
+    });
+
+    // 生成目录
+    headings.forEach(function(heading, index) {
+        // 为每个标题创建ID
+        if (!heading.id) {
+            heading.id = 'heading-' + index;
+        }
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+        a.classList.add('toc-' + heading.tagName.toLowerCase());
+
+        li.appendChild(a);
+        toc.appendChild(li);
+    });
+
+    // 监听滚动，高亮当前标题
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    function highlightToc() {
+        let scrollPosition = window.scrollY;
+
+        // 找到当前可见的标题
+        let currentHeading = null;
+
+        for (let i = 0; i < headings.length; i++) {
+            const heading = headings[i];
+            const rect = heading.getBoundingClientRect();
+
+            // 检查标题是否在视口中或刚刚超出顶部
+            if (rect.top <= 100) {
+                currentHeading = heading;
+            } else {
+                break;
+            }
+        }
+
+        // 移除所有active类
+        tocLinks.forEach(link => link.classList.remove('active'));
+
+        // 如果找到当前标题，高亮对应的TOC链接
+        if (currentHeading) {
+            const currentLink = document.querySelector(`.toc-list a[href="#${currentHeading.id}"]`);
+            if (currentLink) {
+                currentLink.classList.add('active');
+            }
+        }
+    }
+
+    // 初始化高亮
+    highlightToc();
+
+    // 监听滚动事件
+    window.addEventListener('scroll', highlightToc);
+});
+</script>
+
+        <footer>
+            <p>© 2025 Jinspire · <a href="mailto:jinwu76@gmail.com">Email</a></p>
+        </footer>
+    </main>
+
+    
+</body>
+</html>

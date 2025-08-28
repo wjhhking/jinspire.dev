@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinspire</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+     
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Jinspire</h1>
+            <p>Writing about curiosity, insights, and reflection.</p>
+            <nav class="nav-container">
+                <a href="/" class="nav-link">← Back</a>
+            </nav>
+        </header>
+
+        <article class="content">
+    <h1>为什么说世界的本质是DP？</h1>
+    <span class="date">
+        
+            June 08, 2025
+        
+    </span>
+
+    <!-- 添加TOC切换按钮 - 根据语言显示不同文本 -->
+    <button class="toc-toggle">
+        Catalog
+    </button>
+
+    <!-- 添加TOC容器 -->
+    <div class="toc-container" style="display: none;">
+        <h4>Catalog</h4>
+        <ul class="toc-list" id="toc"></ul>
+    </div>
+
+    <div class="post-content">
+        
+<p>为什么说这个世界的本质就是动态规划（Dynamic Programming，DP）？</p>
+
+<h1 id="">什么是动态规划</h1>
+
+<p>码农界的的DP，通常是刷题时的最难的题型，常见于Leetcode周赛的最后一题。</p>
+
+<p>然而到底什么是DP呢？</p>
+
+<p>是一种算法思想。</p>
+
+<p>核心部分就是要记住之前计算过的最优策略。</p>
+
+<p>aka，查表。</p>
+
+<p>而这其实也是世界运行和人类决策的基本逻辑。</p>
+
+<p>最优路径规划就是最常见的DP问题。</p>
+
+<p>还有最经典的斐波那契数列。</p>
+
+<p>大模型届的KV Cache就是经典的DP思想。</p>
+
+<p>所有的LRU Cache / Redis / CDN，都是一样的思想。</p>
+
+<p>这里可以有无数的计算机科学的例子，然而更重要的，是人类的生活中的启发。</p>
+
+<h1 id="dp">现实中有哪些DP呢？</h1>
+
+<p>当你在思考时，你并不是从零开始，而是从最近一次相关的记忆出发。我们的大脑并不擅长即时全局计算，而擅长的是调用已有的、曾经出现过的模式片段。就像动态规划中的“记忆化搜索”（memoization）：你遇到一个子问题，先查一下有没有存过解，如果有，就直接复用。</p>
+
+<h3 id="_2">下棋</h3>
+
+<p>下棋时，开局时记忆而非计算，而是已经知道怎么下了。</p>
+
+<p>你的当头炮马来条，你的后翼弃兵，你的金角银边草肚皮，都是人类在无数次对弈中总结出来的DP表。</p>
+
+<p>一位职业棋手在开局时，并不需要每步都从头分析。他落子的依据，往往是记忆中无数次练习过的开局套路。这些记忆，可能来源于：</p>
+
+<ul>
+<li>上百盘实战；</li>
+
+<li>书籍中的定式；</li>
+
+<li>师傅讲解过的局面；</li>
+
+<li>模糊的视觉图像。</li>
+</ul>
+
+<p>他的大脑在做的，是快速匹配当前局势与脑海中“记忆库”中的一条路径。</p>
+
+<p>这些步骤往往时人类所有的经验合成的DP表。</p>
+
+<p>高手往往可以背谱背很多步。</p>
+
+<h3 id="_3">思考，往往起源于“查表”</h3>
+
+<p>我们每次思考，其实大多是在潜意识里问自己：</p>
+
+<p>我以前有没有遇到过类似的情况？</p>
+
+<p>我听谁说过类似的故事？</p>
+
+<p>有没有一条熟悉的解释可以套用？</p>
+
+<p>这其实就是在调用一个“人类版的DP表”——一个被我们经验、教育、文化所不断写入和更新的巨大缓存系统。</p>
+
+<h3 id="_4">第一性原理</h3>
+
+<p>当然了，也有例外。</p>
+
+<p>第一性原理，就是要打破最近的DP表，找到更加稳定的起点。</p>
+
+<p>记忆有限。有时候它会过时、偏差或根本不适用。</p>
+
+<p>这时候，我们需要做的就是找到更原始的逻辑起点。</p>
+
+<p>这就像是，在一个充满缓存的系统中，人为执行一次冷启动：不依赖旧结果，强行重新求解一次。</p>
+
+<p>总会有伟大的人，带领我们找到更原始的逻辑起点。</p>
+
+<p>比如牛顿，比如爱因斯坦。</p>
+
+<p>比如高斯。</p>
+
+<p>比如Hinton教授。</p>
+
+<h1 id="_5">站在巨人的肩膀</h1>
+
+<p>所以，这给了我们一个极其深刻的启发：</p>
+
+<p>我们为什么要学习？</p>
+
+<p><strong>不是为了考试，不是为了显得聪明——而是为了抓取别人已经写好的DP表。</strong></p>
+
+<h3 id="_6">学语言的过程</h3>
+
+<p>我们小时候并不理解语法规则，但会先模仿、先背诵。 “早上好”、“我爱你”、“你吃饭了吗”——这些语句我们一开始并不理解结构，而是直接调用记忆。就像语言模型预训练阶段，只是暴力堆积token的统计模式。</p>
+
+<p>但随着记忆表的积累到一定程度，突然之间：</p>
+
+<p>语言“涌现”了。你开始能组句，能表达，能跳出例句创造新话语。</p>
+
+<p>这不是灵光乍现，而是DP表足够大、状态覆盖足够广之后，自然出现的结果。</p>
+
+<h3 id="_7">启发</h3>
+
+<p>在这个世界上，有人花了一生，走完了一条复杂而艰难的路径，把中间每一步都记录了下来。而我们学习的意义，就是把这些“中间结果”加载进自己大脑的缓存表，省去反复试错的代价。</p>
+
+<ul>
+<li>看书，是提取他人沉淀下来的经验片段；</li>
+
+<li>看传记，是复制一整段人生的“状态转移轨迹”；</li>
+
+<li>看视频、听讲座，是快速吸收别人的观察角度和认知模式；</li>
+
+<li>而上学，则是系统性地加载人类在某一领域集体编写好的DP表。</li>
+</ul>
+
+<p>你越能精准调用这些已有的“记忆表”，就越能在关键时刻快速出解，甚至跳出常规，产生新解。</p>
+
+<p>甚至一生中，只需要调用这些DP表，就可以很好的过完一生。 当然了，你还是想要活出<strong>自己</strong>精彩的一生。</p>
+
+<p>你不是天才，但你可以背下很多天才的中间步骤。</p>
+
+<p>你不是巨人，但你可以复用巨人的路径。</p>
+
+<p>你不是从0开始，而是从99%的已有答案出发，去寻找那个独属于你的“最后一步”。</p>
+
+    </div>
+</article>
+
+<!-- 添加TOC生成和高亮脚本 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取所有标题元素
+    const headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4');
+    const toc = document.getElementById('toc');
+    const tocContainer = document.querySelector('.toc-container');
+    const tocToggle = document.querySelector('.toc-toggle');
+    const isChinesePage = false;
+
+    // 如果没有标题，不显示TOC
+    if (headings.length === 0) {
+        tocToggle.style.display = 'none';
+        return;
+    }
+
+    // 切换目录显示
+    tocToggle.addEventListener('click', function() {
+        if (tocContainer.style.display === 'none') {
+            tocContainer.style.display = 'block';
+            tocToggle.textContent = isChinesePage ? '关闭目录' : 'Close Catalog';
+        } else {
+            tocContainer.style.display = 'none';
+            tocToggle.textContent = isChinesePage ? '目录' : 'Catalog';
+        }
+    });
+
+    // 生成目录
+    headings.forEach(function(heading, index) {
+        // 为每个标题创建ID
+        if (!heading.id) {
+            heading.id = 'heading-' + index;
+        }
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+        a.classList.add('toc-' + heading.tagName.toLowerCase());
+
+        li.appendChild(a);
+        toc.appendChild(li);
+    });
+
+    // 监听滚动，高亮当前标题
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    function highlightToc() {
+        let scrollPosition = window.scrollY;
+
+        // 找到当前可见的标题
+        let currentHeading = null;
+
+        for (let i = 0; i < headings.length; i++) {
+            const heading = headings[i];
+            const rect = heading.getBoundingClientRect();
+
+            // 检查标题是否在视口中或刚刚超出顶部
+            if (rect.top <= 100) {
+                currentHeading = heading;
+            } else {
+                break;
+            }
+        }
+
+        // 移除所有active类
+        tocLinks.forEach(link => link.classList.remove('active'));
+
+        // 如果找到当前标题，高亮对应的TOC链接
+        if (currentHeading) {
+            const currentLink = document.querySelector(`.toc-list a[href="#${currentHeading.id}"]`);
+            if (currentLink) {
+                currentLink.classList.add('active');
+            }
+        }
+    }
+
+    // 初始化高亮
+    highlightToc();
+
+    // 监听滚动事件
+    window.addEventListener('scroll', highlightToc);
+});
+</script>
+
+        <footer>
+            <p>© 2025 Jinspire · <a href="mailto:jinwu76@gmail.com">Email</a></p>
+        </footer>
+    </main>
+
+    
+</body>
+</html>

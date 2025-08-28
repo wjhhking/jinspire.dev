@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -15,7 +15,7 @@
             <p>Writing about curiosity, insights, and reflection.</p>
             <nav class="nav-container">
                 
-                    <a href="/" class="nav-link">←</a>
+                    <a href="/" class="nav-link">← Back</a>
                 
             </nav>
         </header>
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const toc = document.getElementById('toc');
     const tocContainer = document.querySelector('.toc-container');
     const tocToggle = document.querySelector('.toc-toggle');
-    const isChinesePage = true;
+    const isChinesePage = document.documentElement.lang === 'zh';
 
     // 如果没有标题，不显示TOC
     if (headings.length === 0) {

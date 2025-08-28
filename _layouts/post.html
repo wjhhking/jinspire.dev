@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const toc = document.getElementById('toc');
     const tocContainer = document.querySelector('.toc-container');
     const tocToggle = document.querySelector('.toc-toggle');
-    const isChinesePage = {% if page.lang == 'zh' %}true{% else %}false{% endif %};
+    const isChinesePage = document.documentElement.lang === 'zh';
 
     // 如果没有标题，不显示TOC
     if (headings.length === 0) {

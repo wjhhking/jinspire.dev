@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{% if page.lang %}{{ page.lang }}{% else %}en{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -15,7 +15,7 @@
             <p>{{ site.description }}</p>
             <nav class="nav-container">
                 {% if page.layout == 'post' %}
-                    <a href="{{ '/' | relative_url }}" class="nav-link">←</a>
+                    <a href="{{ '/' | relative_url }}" class="nav-link">← Back</a>
                 {% endif %}
             </nav>
         </header>
