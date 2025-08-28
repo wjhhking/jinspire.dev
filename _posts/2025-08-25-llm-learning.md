@@ -82,7 +82,7 @@ The most critical component of RL is the reward function. Modern life is filled 
 - Pavlov famously trained dogs through rewards.
 - Charlie Munger (Buffett’s longtime partner) put it bluntly:
   > *“Show me the incentive, and I will show you the outcome.”*
-- Or in his words: *“Never, ever, think about something else when you should be thinking about the power of incentives.”*
+- Or in his words: **“Never, ever, think about something else when you should be thinking about the power of incentives.”**
 
 **Reward matters.**
 
@@ -91,7 +91,9 @@ If our personal “reward model” is misaligned, we optimize for short-term gra
 So how do we fix it?
 - **Gamify learning.** I’ve been experimenting with “additive learning”: giving myself points and badges for completing tasks, then trading those points for rewards (like phone time). It’s simple, but it works.
 - **Identity as reinforcement.** If we see ourselves as a “lifelong learner,” then learning feels less like effort and more like alignment with our identity.
-- **On-demand learning.** Richard Sutton, one of the fathers of RL, proposed in his recent [“Oak” talk](https://www.youtube.com/watch?v=gEbbGyNkR2U) that we should train directly for what is being used, instead of separating pretraining, SFT, and RL. This applies even more to humans: we learn best when the reward is tied directly to real-world use — what Andrej Karpathy, the "vibe coding" propagator, calls "on-demand learning".
+- **On-demand learning.** Richard Sutton, one of the fathers of RL, proposed in his recent [“Oak” talk](https://www.youtube.com/watch?v=gEbbGyNkR2U) that we should train directly for what is being used, instead of separating pretraining, SFT, and RL. This applies even more to humans: we learn best when the reward is tied directly to real-world use — what **Andrej Karpathy**, the **"vibe coding"** propagator, calls **"on-demand learning"**.
+
+![Photo with Andrew Karpathy]({{ site.url }}/assets/images/posts/photo_with_andrej_karpathy.jpg)
 
 Of course, we are not just LLMs. We have consciousness, emotions, and a rich inner world that AI doesn't. This analogy is a map, not the territory. But like any good map, it can help us navigate the complex landscape of personal growth.
 
@@ -105,8 +107,9 @@ Bringing it all together:
 - **Finetune intentionally.** Don’t just let work or culture shape us passively. Choose environments that reinforce what we want to become. Learn from the greatest.
 - **Be conscious of our reward model.** Don't let the world's default reward functions dictate our behavior. Consciously define our long-term goals and create immediate, tangible rewards for the actions that lead to them. Align our habits with our identity to make positive behaviors feel natural and effortless.
 - **Learn continually and on-demand.** Shift our mindset from a "learn-then-do" model to a "learn-while-doing" one. Treat every task as an opportunity to update our skills. When we encounter a problem, dive deep into the necessary knowledge right then and there. This makes learning relevant and immediately applicable, effectively updating our mental model in real-time.
-- **Think before talk.** Add a deliberate pause between stimulus and response. Take one breath, silently outline our point (goal → key claim → 1–2 supports → close), then speak. This tiny buffer reduces knee-jerk replies, improves signal-to-noise, and makes our “outputs” crisper—very much in the spirit of [the talk](https://www.youtube.com/watch?v=M2ZtBQI2-GY&t=29s) with Sergey Brin, co-founder of Google, and Demis Hassabis, co-founder of DeepMind.
+- **Think before talk.** Add a deliberate pause between stimulus and response. Take one breath, silently outline our point (goal → key claim → 1–2 supports → close), then speak. This tiny buffer reduces knee-jerk replies, improves signal-to-noise, and makes our “outputs” crisper—very much in the spirit of [the talk](https://www.youtube.com/watch?v=M2ZtBQI2-GY&t=29s) with **Sergey Brin**, co-founder of Google, and **Demis Hassabis**, co-founder of DeepMind.
 - **Plan before act.** Before acting, do a quick plan-and-execute loop: define the objective, break it into steps, note dependencies, set a stopping criterion (“what proves this step is done?”), then run the steps and reflect. If we hit ambiguity, re-plan. This mirrors agent patterns (ReAct etc.): *Plan → Act → Observe → Reflect → Re-plan*. It keeps us shipping while staying intentional.
-- **Notes as our personal RAG.** Treat our notes as an external memory we can “retrieve” from: capture atomic snippets (one idea per note), tag them well, link related ideas, and write short summaries after we learn something. When solving a problem, *retrieve* relevant notes first, then *generate* our answer. This dramatically cuts relearning time and improves the quality of our “outputs.”
+- **Notes as personal RAG.** Treat notes as an external memory we can "retrieve" from: capture atomic snippets (one idea per note), tag them well, link related ideas, and write short summaries after we learn something. When solving a problem, *retrieve* relevant notes first, then *generate* our answer. This dramatically cuts relearning time and improves the quality of our "outputs."
+- **Kindness is moderately independent of intelligence.** We can train our mind to become sharper, but cultivating warmth, empathy, and generosity often follows a different path. Both matter, and together they form true wisdom.
 
-These ideas aren't just theoretical for me. They've inspired me to build tools to help put them into practice, starting with an app I'm developing called 'Human Pretraining' and I'm excited to share soon.
+These ideas aren't just theoretical for me. They've inspired me to build tools to help put them into practice, starting with an app I'm developing called **"Human Pretraining"** and I'm excited to share soon.
