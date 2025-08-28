@@ -63,6 +63,7 @@ AI researcher Denny Zhou, known for work on reasoning, has argued that reasoning
 
 That’s why pretraining is so important. In society, we even see a bias toward certain schools — similar to choosing certain base models to build on.
 
+It is also important to point out that in many places, the schooling system becomes **exam-saturated** — education optimized almost entirely for test performance. This is similar to overfitting a model on **benchmarks**: accuracy on the test set rises, but generalization suffers. Real understanding requires a broader distribution of experiences, not just drilling for one metric.
 
 ## Supervised Fine-Tuning (SFT): Adapting in the Workplace
 
@@ -110,6 +111,6 @@ Bringing it all together:
 - **Think before talk.** Add a deliberate pause between stimulus and response. Take one breath, silently outline our point (goal → key claim → 1–2 supports → close), then speak. This tiny buffer reduces knee-jerk replies, improves signal-to-noise, and makes our “outputs” crisper—very much in the spirit of [the talk](https://www.youtube.com/watch?v=M2ZtBQI2-GY&t=29s) with **Sergey Brin**, co-founder of Google, and **Demis Hassabis**, co-founder of DeepMind.
 - **Plan before act.** Before acting, do a quick plan-and-execute loop: define the objective, break it into steps, note dependencies, set a stopping criterion (“what proves this step is done?”), then run the steps and reflect. If we hit ambiguity, re-plan. This mirrors agent patterns (ReAct etc.): *Plan → Act → Observe → Reflect → Re-plan*. It keeps us shipping while staying intentional.
 - **Notes as personal RAG.** Treat notes as an external memory we can "retrieve" from: capture atomic snippets (one idea per note), tag them well, link related ideas, and write short summaries after we learn something. When solving a problem, *retrieve* relevant notes first, then *generate* our answer. This dramatically cuts relearning time and improves the quality of our "outputs."
-- **Kindness is moderately independent of intelligence.** We can train our mind to become sharper, but cultivating warmth, empathy, and generosity often follows a different path. Both matter, and together they form true wisdom.
+- **Kindness is moderately independent of intelligence.** We can train our mind to become sharper, but cultivating warmth, empathy, and generosity often follows a different path. Both matter, and together they form true wisdom. See [Hinton's talk in Shanghai](https://www.youtube.com/watch?v=Dt1XGkh1vY8).
 
 These ideas aren't just theoretical for me. They've inspired me to build tools to help put them into practice, starting with an app I'm developing called **"Human Pretraining"** and I'm excited to share soon.
