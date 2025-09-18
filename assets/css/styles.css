@@ -97,6 +97,16 @@ footer a {
     gap: 0.75rem;
 }
 
+/* Left-side header actions (e.g., Catalog button on posts) */
+.header-actions-left {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 .social-links {
     display: flex;
     align-items: center;
@@ -222,15 +232,23 @@ body.catalog-open { overflow: hidden; }
 }
 
 .nav-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: white;
+    display: inline-flex;            /* unify sizing between <a> and <button> */
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.65rem;         /* smaller */
+    background: #fff;
     color: #666;
     text-decoration: none;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;               /* smaller text */
+    line-height: 1.2;                /* normalize button vs link height */
+    font: inherit;                   /* ensure same font on <button> */
+    -webkit-appearance: none;        /* remove native button styling */
+    appearance: none;
     transition: all 0.2s ease;
+    cursor: pointer;                 /* consistent pointer */
 }
 
 .nav-link:hover {
@@ -307,6 +325,15 @@ body.catalog-open { overflow: hidden; }
         top: calc(0.75rem + env(safe-area-inset-top, 0px));
         right: calc(0.75rem + env(safe-area-inset-right, 0px));
         justify-content: flex-end;
+        gap: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .header-actions-left {
+        position: absolute;
+        /* Respect iOS safe areas while keeping top-left alignment */
+        top: calc(0.75rem + env(safe-area-inset-top, 0px));
+        left: calc(0.75rem + env(safe-area-inset-left, 0px));
         gap: 0.5rem;
         margin-bottom: 0;
     }
@@ -646,8 +673,8 @@ body.catalog-open { overflow: hidden; }
 /* 文章目录样式 */
 .toc-container {
   position: fixed;
-  /* align to inside of centered content */
-  right: calc((100vw - min(100vw, 700px)) / 2 + 12px);
+  /* align to inside of centered content — left side under Catalog button */
+  left: calc((100vw - min(100vw, 700px)) / 2 + 12px);
   top: 190px;
   width: 280px;
   max-height: 70vh;

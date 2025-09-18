@@ -11,6 +11,13 @@
 <body>
     <main>
         <header>
+            <div class="header-actions-left">
+                {% if page.layout == 'post' %}
+                    <button id="catalog-header-btn" class="nav-link" aria-haspopup="dialog" aria-controls="toc-panel">
+                        {% if page.lang == 'zh' %}目录{% else %}Catalog{% endif %}
+                    </button>
+                {% endif %}
+            </div>
             <div class="header-actions">
                 {% if page.layout == 'post' %}
                     <a href="{{ '/' | relative_url }}" class="nav-link">← Back</a>
