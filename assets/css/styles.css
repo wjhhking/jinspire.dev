@@ -302,11 +302,13 @@ body.catalog-open { overflow: hidden; }
     }
 
     .header-actions {
-        position: static;
-        justify-content: center;
-        flex-wrap: wrap;
+        position: absolute;
+        /* Respect iOS safe areas while keeping top-right alignment */
+        top: calc(0.75rem + env(safe-area-inset-top, 0px));
+        right: calc(0.75rem + env(safe-area-inset-right, 0px));
+        justify-content: flex-end;
         gap: 0.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0;
     }
 }
 
