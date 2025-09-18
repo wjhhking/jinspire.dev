@@ -1,13 +1,48 @@
+"""
+Matrix shape visualizer (lightweight).
+
+What this shows
+- A single input matrix `A` (rows × cols) on the left.
+- 12 repeated sets of three matrices `B1`, `B2`, `B3` arranged as 6 rows × 2 columns
+  to the right of `A`.
+- Each rectangle’s width represents the number of columns; height represents the
+  number of rows. Relative aspect ratios are preserved via a single `unit_scale`.
+
+Why it exists
+- Quickly eyeball relative shapes and module sizes when reasoning about
+  matrix multiplications or model blocks.
+- Produce a simple figure suitable for a blog post or discussion.
+
+How to use
+- Install matplotlib: `pip install matplotlib`.
+- Run from the repo root: `python scripts/visualize.py`.
+- Edit the constants below (A_rows/A_cols, B*_rows/B*_cols, unit_scale, margin)
+  to match your scenario. Larger `unit_scale` makes all boxes bigger.
+
+Notes
+- This is a visual aid only; it does not perform or validate matrix
+  multiplications. Labels include exact dimensions for reference.
+"""
+
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
 
 def draw_matrix(ax, width, height, pos_x, pos_y, label=None, color='skyblue', alpha=0.7):
-    """Draw a rectangle representing a matrix with the given dimensions."""
-    rect = patches.Rectangle((pos_x, pos_y), width, height, linewidth=1, 
+    """Draw one matrix rectangle.
+
+    Parameters
+    - ax: Matplotlib axes to draw on.
+    - width, height: Scaled plot units (not raw rows/cols). Width corresponds to
+      columns, height to rows; both should already be multiplied by `unit_scale`.
+    - pos_x, pos_y: Bottom-left corner of the rectangle in plot coordinates.
+    - label: Optional string shown inside the box when there is space.
+    - color, alpha: Styling tweaks for the rectangle face.
+    """
+    rect = patches.Rectangle((pos_x, pos_y), width, height, linewidth=1,
                             edgecolor='black', facecolor=color, alpha=alpha)
     ax.add_patch(rect)
-    
+
     # Add label in the middle of the rectangle if it fits
     if label:
         if width > len(label) * 5 and height > 10:  # Simple check if label might fit
@@ -38,7 +73,7 @@ start_y = margin
 # Draw matrix A
 A_width = A_cols * unit_scale
 A_height = A_rows * unit_scale
-draw_matrix(ax, A_width, A_height, start_x, start_y, 
+draw_matrix(ax, A_width, A_height, start_x, start_y,
             label=f"A: {A_rows}×{A_cols}", color='lightblue')
 
 # Position for B matrices start after A with some margin
@@ -48,10 +83,10 @@ B_start_x = start_x + A_width + margin * 2
 for i in range(6):
     for j in range(2):
         idx = i*2 + j
-        
+
         # Calculate positions
         x_offset = j * (B1_cols * unit_scale + B2_cols * unit_scale + B3_cols * unit_scale + margin * 2)
-        
+
         # Each row position depends on the height of B matrices in previous rows
         if i == 0:
             y_pos = start_y
@@ -59,32 +94,32 @@ for i in range(6):
             # Use the maximum height of B1, B2, B3 to position the next row
             max_B_height = max(B1_rows, B3_rows) * unit_scale
             y_pos = start_y + i * (max_B_height + margin)
-        
+
         # Draw B1
         B1_width = B1_cols * unit_scale
         B1_height = B1_rows * unit_scale
-        draw_matrix(ax, B1_width, B1_height, 
-                    B_start_x + x_offset, 
+        draw_matrix(ax, B1_width, B1_height,
+                    B_start_x + x_offset,
                     y_pos,
-                    label=f"B1 #{idx+1}: {B1_rows}×{B1_cols}", 
+                    label=f"B1 #{idx+1}: {B1_rows}×{B1_cols}",
                     color='lightgreen')
-        
+
         # Draw B2
         B2_width = B2_cols * unit_scale
         B2_height = B2_rows * unit_scale
-        draw_matrix(ax, B2_width, B2_height, 
-                    B_start_x + x_offset + B1_width + margin, 
+        draw_matrix(ax, B2_width, B2_height,
+                    B_start_x + x_offset + B1_width + margin,
                     y_pos,
-                    label=f"B2 #{idx+1}: {B2_rows}×{B2_cols}", 
+                    label=f"B2 #{idx+1}: {B2_rows}×{B2_cols}",
                     color='lightsalmon')
-        
+
         # Draw B3
         B3_width = B3_cols * unit_scale
         B3_height = B3_rows * unit_scale
-        draw_matrix(ax, B3_width, B3_height, 
-                    B_start_x + x_offset + B1_width + B2_width + margin * 2, 
+        draw_matrix(ax, B3_width, B3_height,
+                    B_start_x + x_offset + B1_width + B2_width + margin * 2,
                     y_pos,
-                    label=f"B3 #{idx+1}: {B3_rows}×{B3_cols}", 
+                    label=f"B3 #{idx+1}: {B3_rows}×{B3_cols}",
                     color='lightpink')
 
 # Add title and labels
