@@ -1,15 +1,17 @@
 ---
 layout: default
 ---
-<section class="blog">
+<section class="catalog">
     {% for post in site.posts %}
-            <article>
-                <h2>
-                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h2>
-                <span class="date">
-                    {{ post.date | date: "%Y-%m-%d" }}
-                </span>
-            </article>
+        <a class="post-card" href="{{ post.url | relative_url }}">
+            <time class="post-card__date" datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%b %d, %Y" }}
+            </time>
+            <h2 class="post-card__title">{{ post.title }}</h2>
+            {% if post.excerpt %}
+            <p class="post-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+            {% endif %}
+            <span class="post-card__arrow" aria-hidden="true">Read →</span>
+        </a>
     {% endfor %}
-</section>
+    </section>
