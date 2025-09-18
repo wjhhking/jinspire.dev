@@ -9,6 +9,10 @@ _site/
 vendor/
 .env
 
+# Built/served mirrors (not needed in repo)
+build/
+serve/
+
 # OS generated files
 .DS_Store
 .DS_Store?

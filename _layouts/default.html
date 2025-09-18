@@ -11,19 +11,24 @@
 <body>
     <main>
         <header>
-            <h1>{{ site.title }}</h1>
-            <p>{{ site.description }}</p>
-            <nav class="nav-container">
+            <div class="header-actions">
                 {% if page.layout == 'post' %}
                     <a href="{{ '/' | relative_url }}" class="nav-link">← Back</a>
                 {% endif %}
-            </nav>
+                <div class="social-links" aria-label="Social links">
+                    <a href="https://www.linkedin.com/in/jin-wu-133b1890/" class="social-icon social-icon--linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">L</a>
+                    <a href="https://x.com/Jinwu76" class="social-icon social-icon--twitter" target="_blank" rel="noopener" aria-label="Twitter" title="Twitter">X</a>
+                </div>
+            </div>
+            <h1>{{ site.title }}</h1>
+            <p>{{ site.description }}</p>
         </header>
 
         {{ content }}
 
         <footer>
             <p>© {{ site.time | date: '%Y' }} {{ site.title }} · <a href="mailto:{{ site.email }}">Email</a></p>
+            <p class="footer-note">Jin is doing startup in SF and love to connect via <a href="https://www.linkedin.com/in/jin-wu-133b1890/" target="_blank" rel="noopener">LinkedIn</a>.</p>
         </footer>
     </main>
 
